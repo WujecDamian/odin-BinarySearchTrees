@@ -5,11 +5,11 @@ if(start>end){
     return null
 }
 
-let root=start+Math.floor((end-start)/2)
-let newNode = node(arr[root])
+let middle=start+Math.floor((end-start)/2)
+let root = node(arr[middle])
 
-newNode.left=buildTree(arr,start,root-1)
-newNode.right=buildTree(arr,root+1,end)
-return newNode
+root.left=buildTree(arr,start,middle-1)
+root.right=buildTree(arr,middle+1,end)
+return root
 
 }
