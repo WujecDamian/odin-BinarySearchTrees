@@ -1,0 +1,36 @@
+{
+  "name": "webpack-template",
+  "version": "1.0.0",
+  "description": "Basic template of webpack perfect for simple projects.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "watch": "jest --watch *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WujecDamian/webpack-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/WujecDamian/webpack-template/issues"
+  },
+  "homepage": "https://github.com/WujecDamian/webpack-template#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.28.6",
+    "@babel/core": "^7.29.0",
+    "@babel/preset-env": "^7.29.2",
+    "css-loader": "^7.1.4",
+    "eslint": "^10.0.2",
+    "html-loader": "^5.1.0",
+    "html-webpack-plugin": "^5.6.6",
+    "prettier": "^3.8.1",
+    "style-loader": "^4.0.0",
+    "webpack": "^5.105.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.3"
+  }
+}
