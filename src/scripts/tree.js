@@ -79,11 +79,9 @@ export function tree(arr) {
         if (direction === "left") {
           /* 0child _ left */
           if (node.left.left === null && node.left.right === null) {
-            console.log("0 children");
             node.left = null;
             /* 2child _ left */
           } else if (node.left.right !== null && node.left.left !== null) {
-            console.log("2 children");
             node.left.root = successor;
 
             /* 1child _ left */
@@ -97,16 +95,13 @@ export function tree(arr) {
               node.left.root = temp;
               node.left.left = null;
             }
-            console.log("1 children");
           }
         } else if (direction === "right") {
           /* 0child _ right */
           if (node.right.left === null && node.right.right === null) {
-            console.log("0 children");
             node.right = null;
             /* 2child _ left */
           } else if (node.right.right !== null && node.right.left !== null) {
-            console.log("2 children");
             /* 1 | let successor=inorderSuccesor(value) */
             node.right.root = successor;
             /* 2 | swap the searched value (node) with inorderSuccesor */
@@ -122,19 +117,12 @@ export function tree(arr) {
               node.right.root = temp;
               node.right.left = null;
             }
-            console.log("1 children");
           }
         } else if (direction === "highest") {
-          console.log(`node ${node.root}`);
-          console.log(`node left ${node.left.root}`);
-          console.log(`node right ${node.right.root}`);
-
           if (node.left === null && node.right === null) {
-            console.log("0 children");
             node.root = null;
             /* 2child _ left */
           } else if (node.right !== null && node.left !== null) {
-            console.log("2 children");
             /* 1 | let successor=inorderSuccesor(value) */
             node.root = successor;
             /* 2 | swap the searched value (node) with inorderSuccesor */
@@ -150,7 +138,6 @@ export function tree(arr) {
               node.right.root = temp;
               node.right.left = null;
             }
-            console.log("1 children");
           }
         } else {
           console.error("Direction Invalid");
