@@ -89,8 +89,20 @@ export function tree(arr) {
             /* 1child _ left */
           } else if (node.right.right !== null && node.right.left !== null) {
             console.log("2 children");
+            /* 1 | let successor=inorderSuccesor(value) */
+            /* 2 | swap the searched value (node) with inorderSuccesor */
+            /* 3 | assign origin node to null */
             /* 2child _ left */
           } else {
+            if (node.right.right.root != null) {
+              const temp = node.right.right.root;
+              node.right.root = temp;
+              node.right.right = null;
+            } else {
+              const temp = node.right.left.root;
+              node.right.root = temp;
+              node.right.left = null;
+            }
             console.log("1 children");
           }
         }
