@@ -58,10 +58,12 @@ export function tree(arr) {
       //* /\ /\ /\ here we got searched
       function inorderSuccesor(root) {
         root = root.right;
-        while (root.left != null) {
-          root.left = root.left.left;
+        let tempRoot = root.left;
+        while (root.left.left !== null) {
+          tempRoot = root.left.left;
         }
-        return root.root;
+
+        return tempRoot.root;
       }
       //* /\ /\ /\ here we got inorder Successor (least value from right branch)
 
@@ -69,10 +71,7 @@ export function tree(arr) {
       //*[ 1. 0children ]
       function deleteNode(node, direction) {
         //!testing ----------------- testing
-        console.log(node.right);
-        console.log(`root: ${root.root}`);
-        console.log(`node: ${node.root}`);
-        console.log(`direction: ${direction}`);
+
         //!testing ----------------- testing
 
         let successor = inorderSuccesor(root);
@@ -85,7 +84,7 @@ export function tree(arr) {
             /* 2child _ left */
           } else if (node.left.right !== null && node.left.left !== null) {
             console.log("2 children");
-            node.left = successor;
+            node.left.root = successor;
 
             /* 1child _ left */
           } else {
@@ -109,7 +108,7 @@ export function tree(arr) {
           } else if (node.right.right !== null && node.right.left !== null) {
             console.log("2 children");
             /* 1 | let successor=inorderSuccesor(value) */
-            node.right = successor;
+            node.right.root = successor;
             /* 2 | swap the searched value (node) with inorderSuccesor */
             /* 3 | assign origin node to null */
             /* 1child _ left */
@@ -126,6 +125,33 @@ export function tree(arr) {
             console.log("1 children");
           }
         } else if (direction === "highest") {
+          console.log(`node ${node.root}`);
+          console.log(`node left ${node.left.root}`);
+          console.log(`node right ${node.right.root}`);
+
+          if (node.left === null && node.right === null) {
+            console.log("0 children");
+            node.root = null;
+            /* 2child _ left */
+          } else if (node.right !== null && node.left !== null) {
+            console.log("2 children");
+            /* 1 | let successor=inorderSuccesor(value) */
+            node.root = successor;
+            /* 2 | swap the searched value (node) with inorderSuccesor */
+            /* 3 | assign origin node to null */
+            /* 1child _ left */
+          } else {
+            if (node.right.root != null) {
+              const temp = node.right.right.root;
+              node.right.root = temp;
+              node.right.right = null;
+            } else {
+              const temp = node.right.left.root;
+              node.right.root = temp;
+              node.right.left = null;
+            }
+            console.log("1 children");
+          }
         } else {
           console.error("Direction Invalid");
         }
