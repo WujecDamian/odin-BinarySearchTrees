@@ -63,6 +63,9 @@ export function tree(arr){
                  
             }
             let searched=findRoot(this.root,value)
+            //* /\ /\ /\ here we got searched 
+
+            //? TODO. Now We have to handle 3 cases:[ 1. 0children | 2. 1children | 3. 2children ]
             return JSON.stringify(searched)
         },
 
