@@ -54,6 +54,15 @@ export function tree(arr) {
       }
       let searched = findRoot(this.root, value);
       //* /\ /\ /\ here we got searched
+      function inorderSuccesor(root) {
+        root = root.right;
+        while (root.left != null) {
+          root.left = root.left.left;
+        }
+        return root.left;
+      }
+      let successor = inorderSuccesor(this.root);
+      console.log(`successor ${successor}`);
 
       //? TODO. Now We have to handle 3 cases:[ 1. 0children | 2. 1children | 3. 2children ]
 
