@@ -26,7 +26,7 @@ export function tree(arr) {
       }
       return root;
     },
-    deleteItem(value) {
+    deleteItem(root, value) {
       function findRoot(root, value) {
         if (value > root.root) {
           //go right
@@ -48,8 +48,8 @@ export function tree(arr) {
           } else {
             return findRoot(root.left, value);
           }
-        } else if ((value = root = root)) {
-          return root;
+        } else if (value === root.root) {
+          deleteNode(root, "highest");
         } else {
           return "error";
         }
@@ -66,11 +66,16 @@ export function tree(arr) {
       //* /\ /\ /\ here we got inorder Successor (least value from right branch)
 
       //? TODO. Now We have to handle 3 cases:[ 1. 0children | 2. 1children | 3. 2children ]
-
       //*[ 1. 0children ]
       function deleteNode(node, direction) {
+        //!testing ----------------- testing
         console.log(node.right);
-        let successor = inorderSuccesor(node);
+        console.log(`root: ${root.root}`);
+        console.log(`node: ${node.root}`);
+        console.log(`direction: ${direction}`);
+        //!testing ----------------- testing
+
+        let successor = inorderSuccesor(root);
 
         if (direction === "left") {
           /* 0child _ left */
@@ -95,7 +100,7 @@ export function tree(arr) {
             }
             console.log("1 children");
           }
-        } else {
+        } else if (direction === "right") {
           /* 0child _ right */
           if (node.right.left === null && node.right.right === null) {
             console.log("0 children");
@@ -120,6 +125,9 @@ export function tree(arr) {
             }
             console.log("1 children");
           }
+        } else if (direction === "highest") {
+        } else {
+          console.error("Direction Invalid");
         }
       } /* 
       } */
