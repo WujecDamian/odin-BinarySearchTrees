@@ -59,10 +59,11 @@ export function tree(arr) {
         while (root.left != null) {
           root.left = root.left.left;
         }
-        return root.left;
+        return root.root;
       }
       let successor = inorderSuccesor(this.root);
       console.log(`successor ${successor}`);
+      //* /\ /\ /\ here we got inorder Successor (least value from right branch)
 
       //? TODO. Now We have to handle 3 cases:[ 1. 0children | 2. 1children | 3. 2children ]
 
