@@ -70,6 +70,15 @@ export function tree(arr) {
             console.log("2 children");
             /* 2child _ left */
           } else {
+            if (node.left.right.root != null) {
+              const temp = node.left.right.root;
+              node.left.root = temp;
+              node.left.right = null;
+            } else {
+              const temp = node.left.left.root;
+              node.left.root = temp;
+              node.left.left = null;
+            }
             console.log("1 children");
           }
         } else {
