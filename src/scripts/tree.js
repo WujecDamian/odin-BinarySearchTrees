@@ -48,6 +48,8 @@ export function tree(arr) {
           } else {
             return findRoot(root.left, value);
           }
+        } else if ((value = root = root)) {
+          return root;
         } else {
           return "error";
         }
@@ -61,8 +63,6 @@ export function tree(arr) {
         }
         return root.root;
       }
-      let successor = inorderSuccesor(this.root);
-      console.log(`successor ${successor}`);
       //* /\ /\ /\ here we got inorder Successor (least value from right branch)
 
       //? TODO. Now We have to handle 3 cases:[ 1. 0children | 2. 1children | 3. 2children ]
@@ -70,15 +70,19 @@ export function tree(arr) {
       //*[ 1. 0children ]
       function deleteNode(node, direction) {
         console.log(node.right);
+        let successor = inorderSuccesor(node);
+
         if (direction === "left") {
           /* 0child _ left */
           if (node.left.left === null && node.left.right === null) {
             console.log("0 children");
             node.left = null;
-            /* 1child _ left */
+            /* 2child _ left */
           } else if (node.left.right !== null && node.left.left !== null) {
             console.log("2 children");
-            /* 2child _ left */
+            node.left = successor;
+
+            /* 1child _ left */
           } else {
             if (node.left.right.root != null) {
               const temp = node.left.right.root;
@@ -96,13 +100,14 @@ export function tree(arr) {
           if (node.right.left === null && node.right.right === null) {
             console.log("0 children");
             node.right = null;
-            /* 1child _ left */
+            /* 2child _ left */
           } else if (node.right.right !== null && node.right.left !== null) {
             console.log("2 children");
             /* 1 | let successor=inorderSuccesor(value) */
+            node.right = successor;
             /* 2 | swap the searched value (node) with inorderSuccesor */
             /* 3 | assign origin node to null */
-            /* 2child _ left */
+            /* 1child _ left */
           } else {
             if (node.right.right.root != null) {
               const temp = node.right.right.root;
