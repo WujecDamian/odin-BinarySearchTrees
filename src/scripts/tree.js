@@ -38,7 +38,7 @@ export function tree(arr){
                         return null
                     }
                     else if(root.right.root===value){
-                        return root.right.root
+                        return root.right
                     }
                     
                     else{
@@ -51,7 +51,7 @@ export function tree(arr){
                         return null
                     }
                     else if(root.left.root===value){ 
-                        return root.left.root
+                        return root.left
                     }
                     else{
                         return findRoot(root.left,value)
@@ -68,11 +68,17 @@ export function tree(arr){
             //? TODO. Now We have to handle 3 cases:[ 1. 0children | 2. 1children | 3. 2children ]
 
             //*[ 1. 0children ]
-
+            if(searched.left===null && searched.right===null){
+                console.log("0 children")
+            }else if(searched.left!==null && searched.right!==null){
+                console.log("2 children")
+            }
+            else{
+                console.log("1 children")
+            }
 
 
             /* returns */
-            console.log(searched.right)
             return JSON.stringify(searched)
         },
 
