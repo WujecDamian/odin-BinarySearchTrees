@@ -61,21 +61,32 @@ export function tree(arr) {
       function deleteNode(node, direction) {
         console.log(node.right);
         if (direction === "left") {
-          if (node.root.left === null && node.root.right === null) {
-            console.log(node);
+          /* 0child _ left */
+          if (node.left.left === null && node.left.right === null) {
             console.log("0 children");
+            node.left = null;
+            /* 1child _ left */
+          } else if (node.left.right !== null && node.left.left !== null) {
+            console.log("2 children");
+            /* 2child _ left */
           } else {
-            if (node.root.left === null && node.root.right === null) {
-              console.log(node);
-              console.log("0 children");
-            }
+            console.log("1 children");
           }
-        } else if (node.left !== null && node.right !== null) {
-          console.log("2 children");
         } else {
-          console.log("1 children");
+          /* 0child _ right */
+          if (node.right.left === null && node.right.right === null) {
+            console.log("0 children");
+            node.right = null;
+            /* 1child _ left */
+          } else if (node.right.right !== null && node.right.left !== null) {
+            console.log("2 children");
+            /* 2child _ left */
+          } else {
+            console.log("1 children");
+          }
         }
-      }
+      } /* 
+      } */
 
       /* returns */
       return JSON.stringify(searched);
