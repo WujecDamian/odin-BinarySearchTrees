@@ -30,29 +30,40 @@ export function tree(arr){
             return root
         },
         deleteItem(value){
-            let current=this.root.root
             function findRoot(root,value){
                  if(value>root.root){
+
                     //go right 
-                    if(root.right===null){
+                    if(root.right===null && root.left===null){
                         return null
                     }
-                    else{
-                        findRoot(root.right,value)
+                    else if(root.right.root===value){
+                        return root.root
                     }
+                    
+                    else{
+                        return findRoot(root.right,value)
+                    }
+
                  }else if(value<root.root){
                     //go left
-                    if(root.left===null){
+                    if(root.right===null && root.left===null){
                         return null
                     }
-                    else{
-                        findRoot(root.left,value)
+                    else if(root.left.root===value){ 
+                        return root.root
                     }
+                    else{
+                        return findRoot(root.left,value)
+                    }
+                 }else{
+                    return "error"
                  }
-                 else if(value===root.root){
-                    return root.root
-                 }
+
+                 
             }
+            let searched=findRoot(this.root,value)
+            return JSON.stringify(searched)
         },
 
     }
