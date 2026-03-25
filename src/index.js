@@ -9,6 +9,6 @@ tree1.insert(tree1.root,'2')
 tree1.insert(tree1.root,'86')
 tree1.insert(tree1.root,'432') */
 
-console.log(tree1.deleteItem(tree1.root, 8));
+tree1.deleteItem(tree1.root, 4);
 
 prettyPrint(tree1.root);
