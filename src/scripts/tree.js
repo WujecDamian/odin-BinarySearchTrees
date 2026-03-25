@@ -62,8 +62,9 @@ export function tree(arr) {
         while (root.left.left !== null) {
           tempRoot = root.left.left;
         }
+        console.log(`${tempRoot.root}`);
 
-        return tempRoot.root;
+        return tempRoot;
       }
       //* /\ /\ /\ here we got inorder Successor (least value from right branch)
 
@@ -82,7 +83,8 @@ export function tree(arr) {
             node.left = null;
             /* 2child _ left */
           } else if (node.left.right !== null && node.left.left !== null) {
-            node.left.root = successor;
+            node.left.root = successor.root;
+            deleteNode(successor, "successor");
 
             /* 1child _ left */
           } else {
@@ -100,10 +102,14 @@ export function tree(arr) {
           /* 0child _ right */
           if (node.right.left === null && node.right.right === null) {
             node.right = null;
+            console.log("0 child");
+
             /* 2child _ left */
           } else if (node.right.right !== null && node.right.left !== null) {
             /* 1 | let successor=inorderSuccesor(value) */
-            node.right.root = successor;
+            node.right.root = successor.root;
+            deleteNode(successor, "successor");
+
             /* 2 | swap the searched value (node) with inorderSuccesor */
             /* 3 | assign origin node to null */
             /* 1child _ left */
@@ -124,13 +130,15 @@ export function tree(arr) {
             /* 2child _ left */
           } else if (node.right !== null && node.left !== null) {
             /* 1 | let successor=inorderSuccesor(value) */
-            node.root = successor;
+            node.root = successor.root;
+            deleteNode(successor, "successor");
+
             /* 2 | swap the searched value (node) with inorderSuccesor */
             /* 3 | assign origin node to null */
             /* 1child _ left */
           } else {
             if (node.right.root != null) {
-              const temp = node.right.right.root;
+              const temp = node.right.root;
               node.right.root = temp;
               node.right.right = null;
             } else {
@@ -139,6 +147,10 @@ export function tree(arr) {
               node.right.left = null;
             }
           }
+        } else if (direction === "successor") {
+          let temp = node.right;
+          node.right = null;
+          node.root = temp.root;
         } else {
           console.error("Direction Invalid");
         }
