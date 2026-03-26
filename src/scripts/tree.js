@@ -193,7 +193,37 @@ export function tree(arr) {
       }
     },
     inOrderForEach(callback) {},
-    preOrderForEach(callback) {},
+    preOrderForEach(callback) {
+      if (typeof callback !== "function") {
+        throw new Error(
+          "Provided parameter is not a function! (Expected: callback function)",
+        );
+      }
+      let queue = [this.root];
+
+      recursiveTraverse(this.root, callback);
+      function recursiveTraverse(node, callback) {
+        if (queue.length === 0) {
+          console.log("Queue empty");
+          return;
+        }
+        if (
+          node != undefined &&
+          node != null &&
+          node.left !== null &&
+          node.left !== undefined
+        ) {
+          callback(node.root);
+
+          recursiveTraverse(node.left, callback);
+          recursiveTraverse(node.right, callback);
+        } else if (node !== undefined && node !== null) {
+          callback(node.root);
+
+          recursiveTraverse(node.right, callback);
+        }
+      }
+    },
     postOrderForEach(callback) {},
   };
 }
