@@ -233,10 +233,6 @@ export function tree(arr) {
 
       recursiveTraverse(this.root, callback);
       function recursiveTraverse(node, callback) {
-        if (queue.length === 0) {
-          console.log("Queue empty");
-          return;
-        }
         if (
           node != undefined &&
           node != null &&
