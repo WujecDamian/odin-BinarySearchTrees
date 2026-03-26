@@ -173,8 +173,7 @@ export function tree(arr) {
         );
       }
       let queue = [this.root];
-      //maybe callback is {visit -> add to string -> queue children} function?
-      //call the callback on each value as it traverses, passing each value (not the nodes) as an argument
+
       recursiveTraverse(this.root, callback);
       function recursiveTraverse(node, callback) {
         if (queue.length === 0) {
