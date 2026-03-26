@@ -5,6 +5,7 @@ export function tree(arr) {
   const uniqueSortedArray = [...new Set(arr.sort((a, b) => a - b))];
   return {
     root: buildTree(uniqueSortedArray, 0, uniqueSortedArray.length - 1),
+    heightValue: 0,
     includes(value) {
       let wasInside = false;
       uniqueSortedArray.forEach((element) => {
@@ -281,5 +282,37 @@ export function tree(arr) {
         }
       }
     },
+    //?--------------------------- height & depth functions --------------------------------
+    height(root, value) {
+      if (value > root.root) {
+        //go right
+        if (root.right === null && root.left === null) {
+          return null;
+        } else if (root.right.root === value) {
+          this.heightValue++;
+          return this.heightValue;
+        } else {
+          this.heightValue++;
+          return this.height(root.right, value);
+        }
+      } else if (value < root.root) {
+        //go left
+        if (root.right === null && root.left === null) {
+          return null;
+        } else if (root.left.root === value) {
+          this.heightValue++;
+          return this.heightValue;
+        } else {
+          this.heightValue++;
+
+          return this.height(root.left, value);
+        }
+      } else if (value === root.root) {
+        return this.heightValue;
+      } else {
+        return "error";
+      }
+    },
+    depth(value) {},
   };
 }
