@@ -369,6 +369,7 @@ export function tree(arr) {
       let left = this.height(this.root, this.root.left.root);
       let right = this.height(this.root, this.root.right.root);
       let balance = 0;
+      console.log(`Left & Right: ${left} ${right}`);
       if (left > right) {
         balance = left - right;
       } else {
