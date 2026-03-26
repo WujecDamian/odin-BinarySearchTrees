@@ -364,7 +364,46 @@ export function tree(arr) {
       }
     },
     //?--------------------------- isBalanced & rebalance --------------------------------
-    isBalanced() {},
-    rebalance() {},
+    isBalanced() {
+      //take closest to root: left & right -> check height of them if for example left is [4] and right is [6] then tree is NOT balanced
+      let left = this.height(this.root, this.root.left.root);
+      let right = this.height(this.root, this.root.right.root);
+      let balance = 0;
+      if (left > right) {
+        balance = left - right;
+      } else {
+        balance = right - left;
+      }
+      if (balance > 1) {
+        return false;
+      } else {
+        return true;
+      }
+    },
+    rebalance() {
+      /* get array  */
+      /*     let arr = getElementsFromTree(this.root); //have to use own priv function */
+      let arr = [];
+
+      function getElementsFromTree(node) {
+        if (
+          node != undefined &&
+          node != null &&
+          node.left !== null &&
+          node.left !== undefined
+        ) {
+          arr.push(node.root);
+          getElementsFromTree(node.left);
+          getElementsFromTree(node.right);
+        } else if (node !== undefined && node !== null) {
+          arr.push(node.root);
+
+          getElementsFromTree(node.right);
+        }
+      }
+      getElementsFromTree(this.root);
+      arr.sort((a, b) => a - b);
+      buildTree(arr, 0, arr.length - 1);
+    },
   };
 }
