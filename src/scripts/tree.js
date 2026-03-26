@@ -1,5 +1,6 @@
 import { buildTree } from "./buildTree.js";
 import { node } from "./node.js";
+import { prettyPrint } from "./prettyPrint.js";
 
 export function tree(arr) {
   const uniqueSortedArray = [...new Set(arr.sort((a, b) => a - b))];
@@ -404,7 +405,9 @@ export function tree(arr) {
       }
       getElementsFromTree(this.root);
       arr.sort((a, b) => a - b);
+      console.table(arr);
       buildTree(arr, 0, arr.length - 1);
+      prettyPrint(this.root);
     },
   };
 }
