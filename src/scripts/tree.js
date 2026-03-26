@@ -192,7 +192,10 @@ export function tree(arr) {
         recursiveTraverse(queue[0], callback);
       }
     },
-    inOrderForEach(callback) {},
+    inOrderForEach(callback) {
+      //check if left is not empty
+      //recurse on left
+    },
     preOrderForEach(callback) {
       if (typeof callback !== "function") {
         throw new Error(
@@ -214,7 +217,6 @@ export function tree(arr) {
           node.left !== undefined
         ) {
           callback(node.root);
-
           recursiveTraverse(node.left, callback);
           recursiveTraverse(node.right, callback);
         } else if (node !== undefined && node !== null) {
