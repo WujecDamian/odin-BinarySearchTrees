@@ -5,7 +5,7 @@ export function tree(arr) {
   const uniqueSortedArray = [...new Set(arr.sort((a, b) => a - b))];
   return {
     root: buildTree(uniqueSortedArray, 0, uniqueSortedArray.length - 1),
-    heightValue: 0,
+    depthValue: 0,
     includes(value) {
       let wasInside = false;
       uniqueSortedArray.forEach((element) => {
@@ -289,10 +289,10 @@ export function tree(arr) {
         if (root.right === null && root.left === null) {
           return null;
         } else if (root.right.root === value) {
-          this.heightValue++;
-          return this.heightValue;
+          this.depthValue++;
+          return this.depthValue;
         } else {
-          this.heightValue++;
+          this.depthValue++;
           return this.depth(root.right, value);
         }
       } else if (value < root.root) {
@@ -300,19 +300,68 @@ export function tree(arr) {
         if (root.right === null && root.left === null) {
           return null;
         } else if (root.left.root === value) {
-          this.heightValue++;
-          return this.heightValue;
+          this.depthValue++;
+          return this.depthValue;
         } else {
-          this.heightValue++;
+          this.depthValue++;
 
           return this.depth(root.left, value);
         }
       } else if (value === root.root) {
-        return this.heightValue;
+        return this.depthValue;
       } else {
         return "error";
       }
     },
-    height(value) {},
+    height(root, value) {
+      function getNode(root, value) {
+        if (value > root.root) {
+          //go right
+          if (root.right === null && root.left === null) {
+            return null;
+          } else if (root.right.root === value) {
+            return root.right;
+          } else {
+            return getNode(root.right, value);
+          }
+        } else if (value < root.root) {
+          //go left
+          if (root.right === null && root.left === null) {
+            return null;
+          } else if (root.left.root === value) {
+            return root.left;
+          } else {
+            return getNode(root.left, value);
+          }
+        } else if (value === root.root) {
+          return root;
+        } else {
+          return "error";
+        }
+      }
+
+      let node = getNode(root, value);
+      if (node === null || node === undefined) {
+        return;
+      } else {
+        let heightVal = 0;
+        getHeight(node);
+        function getHeight(node) {
+          if (node !== undefined && node !== null) {
+            if (node.left !== null) {
+              heightVal++;
+              getHeight(node.left);
+            } else if (node.right !== null) {
+              heightVal++;
+              getHeight(node.left);
+            } else if (node.right === null && node.left === null) {
+              return;
+            }
+          }
+        }
+
+        return heightVal;
+      }
+    },
   };
 }
