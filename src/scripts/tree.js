@@ -160,5 +160,36 @@ export function tree(arr) {
       /* returns */
       return JSON.stringify(searched);
     },
+
+    //!                                                                 LEVEL ORDER FOREACH */
+    callback(node) {
+      console.log(`Node: ${node}`);
+    },
+
+    levelOrderForEach(callback) {
+      if (typeof callback !== "function") {
+        return error;
+      }
+      let queue = [this.root];
+      //maybe callback is {visit -> add to string -> queue children} function?
+      //call the callback on each value as it traverses, passing each value (not the nodes) as an argument
+      recursiveTraverse(this.root, callback);
+      function recursiveTraverse(node, callback) {
+        if (queue.length === 0) {
+          console.log("Queue empty");
+          return;
+        }
+        if (node.left !== null && node.left !== undefined) {
+          queue.push(node.left);
+        }
+        if (node.right !== null && node.right !== undefined) {
+          queue.push(node.right);
+        }
+        queue.splice(0, 1);
+        callback(node.root);
+
+        recursiveTraverse(queue[0], callback);
+      }
+    },
   };
 }
