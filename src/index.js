@@ -9,7 +9,9 @@ tree1.insert(tree1.root,'2')
 tree1.insert(tree1.root,'86')
 tree1.insert(tree1.root,'432')
 tree1.deleteItem(tree1.root, 4); 
-tree1.levelOrderForEach(tree1.callback);*/
+tree1.levelOrderForEach(tree1.callback);
+tree1.preOrderForEach(tree1.callback);*/
 
-tree1.preOrderForEach(tree1.callback);
+tree1.inOrderForEach(tree1.callback);
+
 prettyPrint(tree1.root);
