@@ -168,7 +168,9 @@ export function tree(arr) {
 
     levelOrderForEach(callback) {
       if (typeof callback !== "function") {
-        return error;
+        throw new Error(
+          "Provided parameter is not a function! (Expected: callback function)",
+        );
       }
       let queue = [this.root];
       //maybe callback is {visit -> add to string -> queue children} function?
