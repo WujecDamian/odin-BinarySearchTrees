@@ -249,6 +249,37 @@ export function tree(arr) {
         }
       }
     }, //!POST ORDER---------------------------------------------------------------
-    postOrderForEach(callback) {},
+    postOrderForEach(callback) {
+      //check if left is not empty
+      //recurse on left
+      if (typeof callback !== "function") {
+        throw new Error(
+          "Provided parameter is not a function! (Expected: callback function)",
+        );
+      }
+
+      recursiveTraverse(this.root, callback);
+      function recursiveTraverse(node, callback) {
+        if (
+          node != undefined &&
+          node != null &&
+          node.left !== null &&
+          node.left !== undefined
+        ) {
+          recursiveTraverse(node.left, callback);
+        }
+        if (
+          node != undefined &&
+          node != null &&
+          node.right !== null &&
+          node.right !== undefined
+        ) {
+          recursiveTraverse(node.right, callback);
+        }
+        if (node !== undefined && node !== null) {
+          callback(node.root);
+        }
+      }
+    },
   };
 }
