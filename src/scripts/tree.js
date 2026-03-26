@@ -202,7 +202,6 @@ export function tree(arr) {
           "Provided parameter is not a function! (Expected: callback function)",
         );
       }
-      let queue = [this.root];
 
       recursiveTraverse(this.root, callback);
       function recursiveTraverse(node, callback) {
