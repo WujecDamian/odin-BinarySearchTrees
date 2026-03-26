@@ -12,6 +12,9 @@ tree1.deleteItem(tree1.root, 4);
 tree1.levelOrderForEach(tree1.callback);
 tree1.preOrderForEach(tree1.callback);
 tree1.postOrderForEach(tree1.callback);
-console.log(`${tree1.depth(tree1.root, 9)}`);*/
-console.log(`${tree1.height(tree1.root, 9)}`);
+console.log(`${tree1.depth(tree1.root, 9)}`);
+console.log(`${tree1.height(tree1.root, 9)}`);*/
+console.log(`${tree1.isBalanced()}`);
+
+tree1.rebalance();
 prettyPrint(tree1.root);
