@@ -192,5 +192,8 @@ export function tree(arr) {
         recursiveTraverse(queue[0], callback);
       }
     },
+    inOrderForEach(callback) {},
+    preOrderForEach(callback) {},
+    postOrderForEach(callback) {},
   };
 }
