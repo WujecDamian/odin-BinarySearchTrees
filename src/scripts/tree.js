@@ -363,5 +363,6 @@ export function tree(arr) {
         return heightVal;
       }
     },
+    //?--------------------------- isBalanced & rebalance --------------------------------
   };
 }
