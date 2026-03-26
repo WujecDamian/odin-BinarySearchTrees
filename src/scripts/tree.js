@@ -364,5 +364,7 @@ export function tree(arr) {
       }
     },
     //?--------------------------- isBalanced & rebalance --------------------------------
+    isBalanced() {},
+    rebalance() {},
   };
 }
