@@ -283,7 +283,7 @@ export function tree(arr) {
       }
     },
     //?--------------------------- height & depth functions --------------------------------
-    height(root, value) {
+    depth(root, value) {
       if (value > root.root) {
         //go right
         if (root.right === null && root.left === null) {
@@ -293,7 +293,7 @@ export function tree(arr) {
           return this.heightValue;
         } else {
           this.heightValue++;
-          return this.height(root.right, value);
+          return this.depth(root.right, value);
         }
       } else if (value < root.root) {
         //go left
@@ -305,7 +305,7 @@ export function tree(arr) {
         } else {
           this.heightValue++;
 
-          return this.height(root.left, value);
+          return this.depth(root.left, value);
         }
       } else if (value === root.root) {
         return this.heightValue;
@@ -313,6 +313,6 @@ export function tree(arr) {
         return "error";
       }
     },
-    depth(value) {},
+    height(value) {},
   };
 }
